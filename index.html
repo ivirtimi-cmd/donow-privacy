@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="How the DoNow Android app handles local information, app blocking, Accessibility access, and data removal.">
+  <meta name="description" content="DoNow’s privacy policy: local storage, Accessibility access, optional diagnostics, backups, and your data controls.">
   <meta name="color-scheme" content="dark light">
   <title>Privacy Policy · DoNow</title>
   <style>
@@ -51,16 +51,16 @@
     .date, .muted { color: var(--muted); }
     .date { font-size: .9375rem; }
     .intro { font-size: 1.1875rem; margin-top: 1.5rem; }
-    .review-note {
+    .summary {
       border: 1px solid var(--border);
-      border-left: 3px solid var(--notice);
+      border-left: 3px solid var(--accent);
       border-radius: .5rem;
       padding: 1.25rem;
       margin-block: 1rem 2rem;
       background: var(--surface);
     }
-    .review-note strong { color: var(--notice); }
-    .review-note p:last-child, section > p:last-child { margin-bottom: 0; }
+    .summary strong { color: var(--accent); }
+    .summary p:last-child, section > p:last-child { margin-bottom: 0; }
     nav { padding-block: 1.5rem 2rem; border-block: 1px solid var(--border); }
     nav h2 { font-size: 1rem; margin-bottom: .75rem; color: var(--muted); }
     nav ol { display: grid; grid-template-columns: 1fr 1fr; gap: .25rem 1.5rem; list-style: none; padding: 0; margin: 0; }
@@ -98,9 +98,13 @@
     <header id="top">
       <p class="brand">DoNow</p>
       <h1>Privacy policy</h1>
-      <p class="date">Effective date: <time datetime="2026-10-16">16 October 2026</time></p>
-      <p class="intro">DoNow helps you focus by blocking the distracting apps you choose during a focus session. This policy explains the information the Android app accesses, why it uses it, and what stays on your device.</p>
-      <p class="muted">This policy describes the current version of DoNow, before subscriptions or billing are implemented.</p>
+      <p class="date">Effective date: <time datetime="2026-10-29">29 October 2026</time></p>
+      <p class="intro">DoNow helps you focus by blocking the distracting apps you choose during a focus session. This policy explains what the Android app accesses and stores, how it uses that information, and the choices you have.</p>
+      <p class="muted">Published by Lunar Spectre. This policy covers the current Android app, including its optional local diagnostics, before subscriptions or billing are implemented.</p>
+      <div class="summary">
+        <p><strong>Your focus information stays local.</strong> The app has no Internet permission and does not automatically upload your tasks, app choices, or diagnostic results.</p>
+        <p>Accessibility access lets DoNow identify apps from Android events. You can revoke that access in Android settings. Visiting this website or choosing to email us involves separate services, explained below.</p>
+      </div>
     </header>
 
     <nav aria-label="Policy sections">
@@ -108,11 +112,13 @@
       <ol>
         <li><a href="#information">1. Information on your device</a></li>
         <li><a href="#accessibility">2. Accessibility and app blocking</a></li>
-        <li><a href="#sharing">3. Transmission and third parties</a></li>
-        <li><a href="#storage">4. Storage and retention</a></li>
-        <li><a href="#choices">5. Your controls and data removal</a></li>
-        <li><a href="#changes">6. Changes to this policy</a></li>
-        <li><a href="#contact">7. Publisher and contact</a></li>
+        <li><a href="#diagnostics">3. Optional local diagnostics</a></li>
+        <li><a href="#sharing">4. Transmission and third parties</a></li>
+        <li><a href="#storage">5. Storage, backups, and retention</a></li>
+        <li><a href="#choices">6. Your controls and data removal</a></li>
+        <li><a href="#website">7. This website and email</a></li>
+        <li><a href="#changes">8. Changes to this policy</a></li>
+        <li><a href="#contact">9. Publisher and contact</a></li>
       </ol>
     </nav>
 
@@ -143,12 +149,28 @@
           <li>The app is in your selected-app list.</li>
           <li>A focus session is active and has not expired.</li>
         </ul>
-        <p>When these conditions are met, DoNow shows its blocking screen with your task and remaining time. It temporarily holds the observed app identifier in memory to handle these checks. It does not save an app-use history.</p>
+        <p>DoNow uses these checks to decide whether to open its blocking screen with your task and remaining time. Android or device-specific restrictions can prevent that screen from appearing; blocking is not guaranteed. The app temporarily holds the observed app identifier in memory to handle these checks. It does not save a history of which apps you opened.</p>
         <p>The service does not retrieve window content, read typed text or messages, capture screenshots, or simulate taps.</p>
       </section>
 
+      <section id="diagnostics" aria-labelledby="diagnostics-title">
+        <h2 id="diagnostics-title">3. Optional local diagnostics</h2>
+        <p>The <strong>Blocking diagnostics</strong> screen helps investigate blocking problems. Recording is off by default and starts only when you choose <strong>Start capture</strong>. A capture accepts observations for up to five minutes, or until you stop it sooner.</p>
+        <p>While a capture is running, it keeps a limited set of counters and the latest observation for each diagnostic category:</p>
+        <ul>
+          <li>Service connection and lifecycle events, and receipt of app-window events.</li>
+          <li>Blocking consent, the number of selected apps, and whether an observed app matches a selection.</li>
+          <li>Whether a session record is available, whether it is active, the remaining time, and the blocking decision.</li>
+          <li>Requests to open the blocking screen, its lifecycle and eligibility checks, and general error categories.</li>
+          <li>Accessibility and battery-optimization settings, plus observation counts and timing relative to the capture.</li>
+        </ul>
+        <p>The screen also displays the DoNow version and Android version. Diagnostic records do not contain app names or package identifiers, task text, screen contents, messages, screenshots, or a list of apps you have used.</p>
+        <p>Diagnostics stay in temporary memory inside the app. They are not written to a diagnostic file or uploaded. They can remain visible after navigation or <strong>Stop capture</strong>, but are lost when Android ends the app process or the device restarts. <strong>Clear diagnostics</strong> removes the retained observations and stops capture; starting a new capture replaces the previous results.</p>
+        <p>You may choose to take and share screenshots yourself. DoNow does not capture or send them automatically. A screenshot you save or send is a separate copy handled by your device and the service you use to share it.</p>
+      </section>
+
       <section id="sharing" aria-labelledby="sharing-title">
-        <h2 id="sharing-title">3. Transmission and third parties</h2>
+        <h2 id="sharing-title">4. Transmission and third parties</h2>
         <p>The current app has no Internet permission or developer-operated data-upload path. It processes the information described here on your device; it does not send that information to the publisher or to a developer-operated server.</p>
         <p>No mechanism for sharing or selling this information is implemented in the app. The inspected release dependencies contain no analytics, advertising, crash-reporting, networking, or billing SDK.</p>
         <p>DoNow does use third-party software libraries, including AndroidX, Jetpack Compose, and Kotlin libraries, to provide its interface and local functionality. This policy’s description of DoNow does not describe separate data practices of Android, Google Play, your device manufacturer, or other apps and services you use.</p>
@@ -156,15 +178,19 @@
       </section>
 
       <section id="storage" aria-labelledby="storage-title">
-        <h2 id="storage-title">4. Storage and retention</h2>
+        <h2 id="storage-title">5. Storage, backups, and retention</h2>
         <p>DoNow stores its local files and preferences in Android’s private app storage, without additional app-level encryption. Draft choices may also be kept in Android’s saved screen state.</p>
+        <p>Your task text appears on the session and blocking screens. Anyone who can see those screens may see that text.</p>
         <p>Your selected apps, consent, and onboarding choices remain available for later use. DoNow keeps a current session record rather than a session-history database. When the timer expires, the completed session record may remain. Successfully ending a session clears its current durable record, but draft task text may remain.</p>
         <p>Older preferences retained during a storage migration may also remain on the device, although the app no longer uses them once the replacement state files exist. Ending a session or changing a selection does not guarantee deletion of every older local copy.</p>
         <p>If saving a change fails, the previously saved session or blocking settings may remain in effect. DoNow reports storage errors rather than treating a failed save as successful.</p>
+        <h3>Backups and device transfers</h3>
+        <p>DoNow disables Android app backup and supplies rules excluding its app-data storage domains from cloud backup and Android device-to-device transfer. The app does not provide its own cloud backup or sync service.</p>
+        <p>These settings express how DoNow asks Android to handle its data. They do not guarantee the behavior of every manufacturer’s migration tool or remove copies you make yourself, such as screenshots. Optional diagnostic results are held only in memory.</p>
       </section>
 
       <section id="choices" aria-labelledby="choices-title">
-        <h2 id="choices-title">5. Your controls and data removal</h2>
+        <h2 id="choices-title">6. Your controls and data removal</h2>
         <h3>Change the apps you select</h3>
         <p>You can select or deselect apps in DoNow’s app-selection screen. Successfully saved changes update which apps are eligible for blocking.</p>
         <h3>Turn off blocking inside DoNow</h3>
@@ -176,13 +202,20 @@
         <p>These actions rely on Android’s storage handling. They are not a guarantee of secure erasure or deletion from every location, including copies made outside DoNow.</p>
       </section>
 
+      <section id="website" aria-labelledby="website-title">
+        <h2 id="website-title">7. This website and email</h2>
+        <p>This policy page contains no JavaScript, analytics, advertising, external fonts, or embedded third-party assets. The page itself does not set cookies or use browser storage.</p>
+        <p>When this page is hosted on GitHub Pages, GitHub logs and stores visitors’ IP addresses for security purposes. Website hosting is separate from the Android app’s local data handling. See <a href="https://docs.github.com/en/pages/getting-started-with-github-pages/what-is-github-pages#data-collection">GitHub Pages’ data-collection information</a> and the <a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement">GitHub Privacy Statement</a>.</p>
+        <p>If you choose to email the privacy contact, the email sends your address, message, and any attachments through email services to the publisher. This is information you choose to send, not an automatic upload from DoNow. Avoid including task text or other personal information that is not needed for your question. Clearing DoNow’s app storage does not delete email messages or screenshots held outside the app.</p>
+      </section>
+
       <section id="changes" aria-labelledby="changes-title">
-        <h2 id="changes-title">6. Changes to this policy</h2>
+        <h2 id="changes-title">8. Changes to this policy</h2>
         <p>This policy will need to be updated if DoNow’s information handling changes, including when subscriptions or other services are introduced. Refer to the effective date at the top to identify this version.</p>
       </section>
 
       <section id="contact" aria-labelledby="contact-title">
-        <h2 id="contact-title">7. Publisher and contact</h2>
+        <h2 id="contact-title">9. Publisher and contact</h2>
         <p>For questions about DoNow’s privacy practices, use the publisher’s privacy contact below.</p>
         <dl>
           <dt>Publisher</dt>
